@@ -38,7 +38,7 @@ echo -e "\e[37mAuto compile via Maven";
 echo -e "\e[37mRemoves old Artifact / Plugin and copies new one";
 echo -e $line_small;
 echo -e "";
-exit;
+
 for val in ${Plugins[@]}; do
     if [[ `git -C ../$val/ status --porcelain` ]]; then
         echo -e $line;
