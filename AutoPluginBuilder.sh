@@ -28,7 +28,7 @@ line_small="\e[37m------------------------------------------------------";
 
 echo -e "\e[97m";
 echo -e $line_small;
-echo -e "\e[37mAuto Plugin Builder \e[94mv1.1";
+echo -e "\e[37mAuto Plugin Builder \e[94mv1.2";
 echo -e "\e[37mChecks for each Plugin in the Array if changes are reported by git. ";
 
 list=$(printf '%s' "$(IFS=,; printf '%s' "${Plugins[*]}")");
@@ -40,7 +40,7 @@ echo -e $line_small;
 echo -e "";
 
 for val in ${Plugins[@]}; do
-    if [[ `git -C ../$val/ status --porcelain` ]]; then
+    if [[ `git -C $pathToRepos$val/ status --porcelain` ]]; then
         echo -e $line;
         
         CMD="mvn -f $pathToRepos$val/ clean install";
