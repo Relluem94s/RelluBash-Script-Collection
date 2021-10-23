@@ -7,3 +7,8 @@ Collection of Bash Scripts and other goodies i use.
 - AutoPluginBuilder.sh
 
 
+
+## Other:
+
+- .bashrc
+
