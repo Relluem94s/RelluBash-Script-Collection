@@ -28,7 +28,7 @@ line_small="\e[37m------------------------------------------------------";
 
 echo -e "\e[97m";
 echo -e $line_small;
-echo -e "\e[37mAuto Plugin Builder \e[94mv1.0";
+echo -e "\e[37mAuto Plugin Builder \e[94mv1.1";
 echo -e "\e[37mChecks for each Plugin in the Array if changes are reported by git. ";
 
 list=$(printf '%s' "$(IFS=,; printf '%s' "${Plugins[*]}")");
@@ -47,6 +47,12 @@ for val in ${Plugins[@]}; do
           echo -e "\e[93m[MAVEN]\e[97m $CMD";
         OUTPUT=$($CMD | grep '\[INFO\] BUILD' | sed 's/^\[INFO\] //g');
         echo -e "\e[93m[MAVEN]\e[97m $OUTPUT";
+        
+        if [ "$OUTPUT" = "BUILD FAILURE" ]; then
+            echo -e "\e[91m[DELETE]\e[97m Skipped";
+            echo -e "\e[92m[COPY]\e[97m Skipped";
+            continue
+        fi
         
         CMD="rm -f $pathToServer${val,,}-*.jar";
           echo -e "\e[91m[DELETE]\e[97m $CMD";
