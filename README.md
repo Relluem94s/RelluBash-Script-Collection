@@ -4,7 +4,8 @@ Collection of Bash Scripts and other goodies i use.
 
 ## Scripts:
 
-- AutoPluginBuilder.sh
+- AutoPluginBuilder.sh (exec mvn, deletes old artifact and copies new one in target folder)
+- youtube-dl.sh (Prompts you to enter url and if audio only)
 
 
 
