@@ -1,24 +1,24 @@
 #!/bin/bash
 
 ###########################################################################################
-#			                    	Auto Plugin Builder 	        		     		  #
-# 				                     by Relluem94 2021		                			  #
+#                                    Auto Plugin Builder                                  #
+#                                      by Relluem94 2021                                  #
 ###########################################################################################
-# 									                                            		  #
-# 									                                            		  #
-# Change 'Plugins' according your Plugins you want to compile and copy		        	  #
-# Change 'pathToRepos' to on above your git location (/home/rellu/repos/) 	        	  #
-# Change 'pathToServer' to your "plugins" folder				                    	  #
-# 											                                              #
-# 										                                            	  #
+#                                                                                         #
+#                                                                                         #
+# Change 'Plugins' according your Plugins you want to compile and copy                    #
+# Change 'pathToRepos' to on above your git location (/home/rellu/repos/)                 #
+# Change 'pathToServer' to your "plugins" folder                                          #
+#                                                                                         #
+#                                                                                         #
 ###########################################################################################
-#			                          VARIABLES TO EDIT 			             		  #
+#                                      VARIABLES TO EDIT                                  #
 ###########################################################################################
 declare -a Plugins=("RelluEssentials" "RelluSGA" "Capturespleef");
 pathToRepos="/home/rellu/repos/";
 pathToServer="/home/rellu/repos/test-server/plugins/";
 ###########################################################################################
-#			                         DO NOT TOUCH THE CODE 			     	         	  #
+#                                     DO NOT TOUCH THE CODE                               #
 ###########################################################################################
 #
 #
@@ -40,25 +40,25 @@ echo -e $line_small;
 echo -e "";
 exit;
 for val in ${Plugins[@]}; do
-	if [[ `git -C ../$val/ status --porcelain` ]]; then
-		echo -e $line;
-		
-		CMD="mvn -f $pathToRepos$val/ clean install";
-	  	echo -e "\e[93m[MAVEN]\e[97m $CMD";
-		OUTPUT=$($CMD | grep '\[INFO\] BUILD' | sed 's/^\[INFO\] //g');
-		echo -e "\e[93m[MAVEN]\e[97m $OUTPUT";
-		
-		CMD="rm -f $pathToServer${val,,}-*.jar";
-	  	echo -e "\e[91m[DELETE]\e[97m $CMD";
-		$CMD;
-		
-		CMD="cp $pathToRepos$val/target/${val,,}-*.jar $pathToServer";
-	  	echo -e "\e[92m[COPY]\e[97m $CMD";
-		$CMD;
-		
-		echo -e $line;
-		echo -e "";
-	fi
+    if [[ `git -C ../$val/ status --porcelain` ]]; then
+        echo -e $line;
+        
+        CMD="mvn -f $pathToRepos$val/ clean install";
+          echo -e "\e[93m[MAVEN]\e[97m $CMD";
+        OUTPUT=$($CMD | grep '\[INFO\] BUILD' | sed 's/^\[INFO\] //g');
+        echo -e "\e[93m[MAVEN]\e[97m $OUTPUT";
+        
+        CMD="rm -f $pathToServer${val,,}-*.jar";
+          echo -e "\e[91m[DELETE]\e[97m $CMD";
+        $CMD;
+        
+        CMD="cp $pathToRepos$val/target/${val,,}-*.jar $pathToServer";
+          echo -e "\e[92m[COPY]\e[97m $CMD";
+        $CMD;
+        
+        echo -e $line;
+        echo -e "";
+    fi
 done
 #
 #
