@@ -21,13 +21,13 @@ line_small="\e[37m------------------------------------------------------";
 
 echo -e "\e[97m";
 echo -e $line_small;
-echo -e "\e[37mYoutube Downloader \e[94mv1.0";
+echo -e "\e[37mYoutube Downloader \e[94mv1.1";
 echo -e $line_small;
 echo -e "";
 
 echo -e "\e[93m[LINK]\e[97m Enter Link to the Youtube Video you want to download:"
 read link
-
+echo -e "";
 echo -e '\e[1;34m[OPTION]\e[97m Download Video or Audio Only?'
 options=("Audio" "Video")
 select opt in "${options[@]}"
@@ -48,7 +48,8 @@ do
     esac
 done
 
-
+echo -e "";
+echo -e $line;
 cmd="$cmd $link";
-
 $cmd;
+echo -e $line;
