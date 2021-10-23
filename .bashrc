@@ -24,6 +24,7 @@ export PS1="\[$(tput bold)\]\[\033[38;5;220m\]\u\[$(tput sgr0)\]\[$(tput sgr0)\]
 
 
 export PATH="$PATH:/opt/netbeans/bin/"
+export PATH=$PATH:"~/repos/RelluBash-Script-Collection/"
 export ANDROID_SDK_ROOT=$HOME/Android/Sdk/
 export ANDROID_HOME=$HOME/.android/
 export PATH="$ANDROID_SDK_ROOT/tools:$PATH"
