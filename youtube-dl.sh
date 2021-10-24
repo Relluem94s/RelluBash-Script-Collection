@@ -21,7 +21,9 @@ line_small="\e[37m------------------------------------------------------";
 
 echo -e "\e[97m";
 echo -e $line_small;
-echo -e "\e[37mYoutube Downloader \e[94mv1.1";
+echo -e "\e[37mYoutube Downloader \e[94mv1.2";
+echo -e "";
+echo -e "Check here for Updates: https://github.com/Relluem94s/RelluBash-Script-Collection";
 echo -e $line_small;
 echo -e "";
 
@@ -53,3 +55,4 @@ echo -e $line;
 cmd="$cmd $link";
 $cmd;
 echo -e $line;
+echo -en "\e[0m"

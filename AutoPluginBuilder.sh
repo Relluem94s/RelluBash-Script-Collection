@@ -30,14 +30,15 @@ echo -e "\e[97m";
 echo -e $line_small;
 echo -e "\e[37mAuto Plugin Builder \e[94mv1.3";
 echo -e "\e[37mChecks for each Plugin in the Array if changes are reported by git. ";
-echo -e "";
-echo -e "Check here for Updates: https://github.com/Relluem94s/RelluBash-Script-Collection";
 
 list=$(printf '%s' "$(IFS=,; printf '%s' "${Plugins[*]}")");
 
 echo -e "\e[37mPlugins configured:\e[94m $list";
 echo -e "\e[37mAuto compile via Maven";
 echo -e "\e[37mRemoves old Artifact / Plugin and copies new one";
+
+echo -e "";
+echo -e "Check here for Updates: https://github.com/Relluem94s/RelluBash-Script-Collection";
 echo -e $line_small;
 echo -e "";
 
