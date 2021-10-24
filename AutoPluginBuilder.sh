@@ -28,8 +28,10 @@ line_small="\e[37m------------------------------------------------------";
 
 echo -e "\e[97m";
 echo -e $line_small;
-echo -e "\e[37mAuto Plugin Builder \e[94mv1.2";
+echo -e "\e[37mAuto Plugin Builder \e[94mv1.3";
 echo -e "\e[37mChecks for each Plugin in the Array if changes are reported by git. ";
+echo -e "";
+echo -e "Check here for Updates: https://github.com/Relluem94s/RelluBash-Script-Collection";
 
 list=$(printf '%s' "$(IFS=,; printf '%s' "${Plugins[*]}")");
 
@@ -66,6 +68,7 @@ for val in ${Plugins[@]}; do
         echo -e "";
     fi
 done
+echo -en "\e[0m"
 #
 #
 #
