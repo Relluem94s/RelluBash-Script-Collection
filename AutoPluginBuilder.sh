@@ -7,7 +7,7 @@
 #                                                                                         #
 #                                                                                         #
 # Change 'Plugins' according your Plugins you want to compile and copy                    #
-# Change 'pathToRepos' to on above your git location (/home/rellu/repos/)                 #
+# Change 'pathToRepos' to one above your git location (/home/rellu/repos/)                 #
 # Change 'pathToServer' to your "plugins" folder                                          #
 #                                                                                         #
 #                                                                                         #
