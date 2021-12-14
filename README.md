@@ -1,4 +1,4 @@
-![RelluBASH-Collection](https://img.relluem94.de/logos/rellubash_collection.png)
+![RelluBASH-Collection](https://img.relluem94.de/logos/main/rellubash_collection.png)
 
 Collection of Bash Scripts and other goodies i use.
 
