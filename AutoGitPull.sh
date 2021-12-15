@@ -19,7 +19,7 @@ pathToRepos="/home/rellu/repos/";
 #
 #
 #
-version="v1.0";
+version="v1.1";
 line="\e[90m============================================================";
 line_small="\e[37m------------------------------------------------------------";
 prefix_git="\e[36m[GIT]     ";
@@ -32,7 +32,7 @@ echo -e "\e[37mFetch and Pulls every Repos in the given Path. ";
 echo -e "\e[37mExample:\e[36m ./AutoGitPull.sh";
 echo -e "";
 echo -e "";
-echo -e "Check here for Updates: https://github.com/Relluem94s/RelluBash-Script-Collection";
+echo -e "\e[37mCheck here for Updates: https://github.com/Relluem94s/RelluBash-Script-Collection";
 echo -e $line_small;
 echo -e "";
 echo
