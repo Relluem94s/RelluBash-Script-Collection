@@ -32,7 +32,9 @@ do
         
             ###########################################################################
             read port
-            sudo nmcli connection import type openvpn file $client.ovpn
+            sudo sudo iptables -A INPUT -p tcp --dport $port -j ACCEPT
+            sudo netfilter-persistent save
+            sudo netfilter-persistent reload
             ###########################################################################
             
             break
