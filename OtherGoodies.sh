@@ -30,10 +30,7 @@ do
             "Open Port in IP Tables")
         
             ###########################################################################
-            read port
-            sudo sudo iptables -A INPUT -p tcp --dport $port -j ACCEPT
-            sudo netfilter-persistent save
-            sudo netfilter-persistent reload
+            ./snippets/OpenPort.sh
             ###########################################################################
             
             break
