@@ -23,7 +23,7 @@ sudo dnf update -y --refresh
 sudo dnf upgrade -y
 sudo dnf install -y wget remmina google-chrome ranger vim gnome-tweak-tool gnome-extensions-app dnf-plugins-core chrome-gnome-shell arc-theme \
 vlc wine unzip VirtualBox git git-lfs xournalpp java-11-openjdk  java-11-openjdk-devel \
-openvpn NetworkManager-openvpn NetworkManager-openvpn-gnome youtube-dl keepassxc lutris shotcut ranger htop python3-pip
+openvpn NetworkManager-openvpn NetworkManager-openvpn-gnome youtube-dl keepassxc lutris shotcut ranger htop python3-pip parallel
 
 sudo dnf remove -y fedora-chromium-config
 
