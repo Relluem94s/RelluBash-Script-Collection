@@ -22,8 +22,7 @@ do
         "Add OVPN File via Network Manager")
         
             ###########################################################################
-            read client
-            sudo nmcli connection import type openvpn file $client.ovpn
+            ./snippets/AddVPN.sh
             ###########################################################################
             
             break
