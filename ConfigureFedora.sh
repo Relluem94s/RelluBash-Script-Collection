@@ -48,7 +48,7 @@ EOF
 
 rm -f Apache-NetBeans-12.4-bin-linux-x64.sh
 
-
+cp .bashrc ~/.bashrc
 
 
 #Extensions
