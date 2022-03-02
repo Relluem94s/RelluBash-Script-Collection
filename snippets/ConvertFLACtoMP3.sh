@@ -1,0 +1,3 @@
+#!/bin/bash
+
+parallel ffmpeg -i {} -qscale:a 0 {.}.mp3 ::: ./*.flac
