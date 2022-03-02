@@ -20,19 +20,11 @@ select opt in "${options[@]}"
 do
     case $opt in
         "Add OVPN File via Network Manager")
-        
-            ###########################################################################
-            ./snippets/AddVPN.sh
-            ###########################################################################
-            
+            ./snippets/AddVPN.sh            
             break
             ;;
             "Open Port in IP Tables")
-        
-            ###########################################################################
             ./snippets/OpenPort.sh
-            ###########################################################################
-            
             break
             ;;
         "Exit")
@@ -41,8 +33,3 @@ do
         *) echo "invalid option $REPLY";;
     esac
 done
-
-
-
-
-
