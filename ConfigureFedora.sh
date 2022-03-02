@@ -70,6 +70,12 @@ gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/or
 gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/ binding '<Alt>T'
 gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/ command 'gnome-terminal'
 
+
+#Disable Wayland
+echo "Disable Wayland"
+sudoedit /etc/gdm/custom.conf
+
+
 #Extensions
 xdg-open https://extensions.gnome.org/extension/3628/arcmenu/
 xdg-open https://extensions.gnome.org/extension/779/clipboard-indicator/
