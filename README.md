@@ -20,3 +20,4 @@ Collection of Bash Scripts and other goodies i use.
 ## Other:
 
 - .bashrc
+  ![.bashrc](./img/bashrc.png)
