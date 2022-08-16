@@ -14,7 +14,7 @@
 ###########################################################################################
 #                                      VARIABLES TO EDIT                                  #
 ###########################################################################################
-declare -a Plugins=("RelluEssentials" "RelluSGA" "Capturespleef");
+declare -a Plugins=("RelluEssentials" "RelluSGA" "CaptureSpleef");
 pathToRepos="/home/rellu/repos/";
 pathToServer="/home/rellu/repos/test-server/plugins/";
 ###########################################################################################
