@@ -5,7 +5,7 @@ sudo dnf upgrade --refresh -y
 
 sudo dnf install wine winetricks
 
-wget https://support.image-line.com/redirect/flstudio20_win_installer -P /tmp/fl_studio
+wget https://demodownload.image-line.com/flstudio/flstudio_win64_20.9.2.2963.exe -P /tmp/fl_studio
 
 cd /tmp/fl_studio
 
