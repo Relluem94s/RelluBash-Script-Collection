@@ -8,7 +8,7 @@ sudo dnf config-manager --add-repo https://dl.winehq.org/wine-builds/fedora/35/w
 
 sudo dnf -y install winehq-stable
 
-sudo dnf install winetricks
+# sudo dnf install winetricks
 
 wget https://demodownload.image-line.com/flstudio/flstudio_win64_20.9.2.2963.exe -P /tmp/fl_studio
 
