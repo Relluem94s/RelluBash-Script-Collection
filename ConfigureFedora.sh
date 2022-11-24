@@ -21,7 +21,7 @@ sudo xdg-open /etc/dnf/dnf.conf
 #Installs
 sudo dnf update -y --refresh
 sudo dnf upgrade -y
-sudo dnf install -y wget remmina google-chrome ranger vim gnome-tweak-tool gnome-extensions-app dnf-plugins-core chrome-gnome-shell arc-theme \
+sudo dnf install -y wget remmina ranger vim gnome-tweak-tool gnome-extensions-app dnf-plugins-core chrome-gnome-shell arc-theme \
 vlc wine unzip VirtualBox git git-lfs xournalpp java-11-openjdk  java-11-openjdk-devel \
 openvpn NetworkManager-openvpn NetworkManager-openvpn-gnome youtube-dl keepassxc lutris shotcut ranger htop python3-pip parallel
 
@@ -31,22 +31,12 @@ flatpak install -y steam discord Sequeler signal
 
 pip install speedtest-cli
 
+sudo rpmkeys --import https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/-/raw/master/pub.gpg
 
-curl -O https://downloads.apache.org/netbeans/netbeans/12.4/Apache-NetBeans-12.4-bin-linux-x64.sh
-chmod +x Apache-NetBeans-12.4-bin-linux-x64.sh
-sudo ./Apache-NetBeans-12.4-bin-linux-x64.sh
+printf "[gitlab.com_paulcarroty_vscodium_repo]\nname=download.vscodium.com\nbaseurl=https://download.vscodium.com/rpms/\nenabled=1\ngpgcheck=1\nrepo_gpgcheck=1\ngpgkey=https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/-/raw/master/pub.gpg\nmetadata_expire=1h" | sudo tee -a /etc/yum.repos.d/vscodium.repo
 
-cat <<EOF > ~/.local/share/applications/netbeans.desktop
-[Desktop Entry]
-Name=Netbeans
-Exec=netbeans
-Icon=/usr/share/applications/netbeans.png
-Terminal=false
-Type=Application
-Categories=Development"
-EOF
+sudo dnf install codium -y
 
-rm -f Apache-NetBeans-12.4-bin-linux-x64.sh
 
 cp .bashrc ~/.bashrc
 
