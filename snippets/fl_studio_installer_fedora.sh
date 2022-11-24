@@ -10,6 +10,10 @@ sudo dnf -y install winehq-stable
 
 # sudo dnf install winetricks
 
+wget  https://raw.githubusercontent.com/Winetricks/winetricks/master/src/winetricks
+chmod +x winetricks
+sudo mv winetricks /usr/local/bin/
+
 wget https://demodownload.image-line.com/flstudio/flstudio_win64_20.9.2.2963.exe -P /tmp/fl_studio
 
 cd /tmp/fl_studio
