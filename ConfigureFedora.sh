@@ -22,8 +22,8 @@ sudo xdg-open /etc/dnf/dnf.conf
 sudo dnf update -y --refresh
 sudo dnf upgrade -y
 sudo dnf install -y wget remmina ranger vim gnome-tweak-tool gnome-extensions-app dnf-plugins-core chrome-gnome-shell arc-theme \
-vlc wine unzip VirtualBox git git-lfs xournalpp java-11-openjdk  java-11-openjdk-devel \
-openvpn NetworkManager-openvpn NetworkManager-openvpn-gnome youtube-dl keepassxc lutris shotcut ranger htop python3-pip parallel
+vlc wine unzip VirtualBox git git-lfs gitk xournalpp java-11-openjdk  java-11-openjdk-devel \
+openvpn NetworkManager-openvpn NetworkManager-openvpn-gnome youtube-dl keepassxc lutris shred shotcut ranger htop python3-pip parallel pavucontrol 
 
 sudo dnf remove -y fedora-chromium-config
 
@@ -65,6 +65,14 @@ gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/or
 echo "Disable Wayland"
 sudoedit /etc/gdm/custom.conf
 
+
+#Docker
+sudo dnf remove docker docker-client docker-client-latest docker-common docker-latest docker-latest-logrotate docker-logrotate docker-selinux docker-engine-selinux docker-engine
+sudo dnf config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo
+sudo dnf install docker-ce docker-ce-cli containerd.io docker-compose-plugin
+
+sudo systemctl start docker
+sudo systemctl enable docker
 
 #Extensions
 xdg-open https://extensions.gnome.org/extension/3628/arcmenu/
