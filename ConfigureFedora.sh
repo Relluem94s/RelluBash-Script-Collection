@@ -74,6 +74,13 @@ sudo dnf install docker-ce docker-ce-cli containerd.io docker-compose-plugin -y
 sudo systemctl start docker
 sudo systemctl enable docker
 
+sudo groupadd docker
+sudo usermod -aG docker $USER
+newgrp docker
+
+#Docker Images
+docker run --name=mysql --restart on-failure -d mysql/mysql-server:8.0
+
 #Extensions
 xdg-open https://extensions.gnome.org/extension/3628/arcmenu/
 xdg-open https://extensions.gnome.org/extension/779/clipboard-indicator/
