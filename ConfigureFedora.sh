@@ -86,7 +86,8 @@ docker run --name=mysql --restart on-failure -d mysql/mysql-server:8.0 -p 3306:3
 echo "================================= MYSQL PASSWORD ================================="
 docker logs mysql 2>&1 | grep GENERATED # MYSQL Password 
 echo "docker exec -it mysql mysql -uroot -p"
-echo "ALTER USER 'root'@'localhost' IDENTIFIED BY 'password';"
+echo "ALTER USER 'root'@'%' IDENTIFIED BY 'nqSK3JMd0DL0OLggCDTjHRu8S1UTrCVbCuTr1uV9VU';"
+echo "FLUSH PRIVILEGES;"
 echo "================================= MYSQL PASSWORD ================================="
 
 
