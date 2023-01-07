@@ -78,8 +78,20 @@ sudo groupadd docker
 sudo usermod -aG docker $USER
 newgrp docker
 
+
 #Docker Images
 docker run --name=mysql --restart on-failure -d mysql/mysql-server:8.0
+
+echo "================================= MYSQL PASSWORD ================================="
+docker logs mysql 2>&1 | grep GENERATED # MYSQL Password 
+echo "docker exec -it mysql mysql -uroot -p"
+echo "ALTER USER 'root'@'localhost' IDENTIFIED BY 'password';"
+echo "================================= MYSQL PASSWORD ================================="
+
+
+docker volume create phpmyadmin-volume
+docker run --name phpmyadmin -v phpmyadmin-volume:/etc/phpmyadmin/config.user.inc.php --link mysql:db -p 82:80 -d phpmyadmin/phpmyadmin
+
 
 #Extensions
 xdg-open https://extensions.gnome.org/extension/3628/arcmenu/
