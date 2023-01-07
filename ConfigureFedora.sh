@@ -22,7 +22,7 @@ sudo xdg-open /etc/dnf/dnf.conf
 sudo dnf update -y --refresh
 sudo dnf upgrade -y
 sudo dnf install -y wget remmina ranger vim gnome-tweak-tool gnome-extensions-app dnf-plugins-core chrome-gnome-shell arc-theme \
-vlc wine unzip VirtualBox git git-lfs gitk xournalpp java-11-openjdk  java-11-openjdk-devel \
+vlc wine unzip VirtualBox git git-lfs gitk xournalpp java-11-openjdk  java-11-openjdk-devel flameshot \
 openvpn NetworkManager-openvpn NetworkManager-openvpn-gnome youtube-dl keepassxc lutris shred shotcut ranger htop python3-pip parallel pavucontrol 
 
 sudo dnf remove -y fedora-chromium-config
