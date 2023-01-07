@@ -80,7 +80,8 @@ newgrp docker
 
 
 #Docker Images
-docker run --name=mysql --restart on-failure -d mysql/mysql-server:8.0
+docker run --name=mysql --restart on-failure -d mysql/mysql-server:8.0 -p 3306:3306
+
 
 echo "================================= MYSQL PASSWORD ================================="
 docker logs mysql 2>&1 | grep GENERATED # MYSQL Password 
@@ -90,7 +91,7 @@ echo "================================= MYSQL PASSWORD =========================
 
 
 docker volume create phpmyadmin-volume
-docker run --name phpmyadmin -v phpmyadmin-volume:/etc/phpmyadmin/config.user.inc.php --link mysql:db -p 82:80 -d phpmyadmin/phpmyadmin
+docker run --name phpmyadmin -v phpmyadmin-volume:/etc/phpmyadmin/config.user.inc.php --link mysql:db -p 88:80 -d phpmyadmin/phpmyadmin
 
 
 #Extensions
