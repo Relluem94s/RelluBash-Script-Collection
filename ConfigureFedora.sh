@@ -21,7 +21,7 @@ sudo xdg-open /etc/dnf/dnf.conf
 #Installs
 sudo dnf update -y --refresh
 sudo dnf upgrade -y
-sudo dnf install -y wget remmina ranger vim gnome-tweak-tool gnome-extensions-app dnf-plugins-core chrome-gnome-shell arc-theme \
+sudo dnf install -y wget tmux remmina ranger vim gnome-tweak-tool gnome-extensions-app dnf-plugins-core chrome-gnome-shell arc-theme \
 vlc wine unzip VirtualBox git git-lfs xournalpp java-11-openjdk  java-11-openjdk-devel \
 openvpn NetworkManager-openvpn NetworkManager-openvpn-gnome youtube-dl keepassxc lutris shotcut ranger htop python3-pip parallel
 
@@ -39,7 +39,7 @@ sudo dnf install codium -y
 
 
 cp .bashrc ~/.bashrc
-
+cp .tmux.conf ~/.tmux.conf
 
 #Keyboard Shortcuts
 gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/']"
