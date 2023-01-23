@@ -80,6 +80,10 @@ for val in ${Plugins[@]}; do
     fi
 done
 echo -en "\e[0m"
+
+
+mcrcon -p password reload # for rcon mcrcon is needed and can be found here https://src.fedoraproject.org/rpms/mcrcon
+
 #
 #
 #
