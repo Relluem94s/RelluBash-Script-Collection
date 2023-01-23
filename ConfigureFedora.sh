@@ -21,9 +21,10 @@ sudo xdg-open /etc/dnf/dnf.conf
 #Installs
 sudo dnf update -y --refresh
 sudo dnf upgrade -y
+
 sudo dnf install -y wget tmux remmina ranger vim gnome-tweak-tool gnome-extensions-app dnf-plugins-core chrome-gnome-shell arc-theme \
-vlc wine unzip VirtualBox git git-lfs xournalpp java-11-openjdk  java-11-openjdk-devel \
-openvpn NetworkManager-openvpn NetworkManager-openvpn-gnome youtube-dl keepassxc lutris shotcut ranger htop python3-pip parallel
+vlc wine unzip VirtualBox git git-lfs gitk xournalpp java-11-openjdk  java-11-openjdk-devel flameshot \
+openvpn NetworkManager-openvpn NetworkManager-openvpn-gnome youtube-dl keepassxc lutris shred shotcut ranger htop python3-pip parallel pavucontrol 
 
 sudo dnf remove -y fedora-chromium-config
 
@@ -64,6 +65,35 @@ gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/or
 #Disable Wayland
 echo "Disable Wayland"
 sudoedit /etc/gdm/custom.conf
+
+
+#Docker
+sudo dnf remove docker docker-client docker-client-latest docker-common docker-latest docker-latest-logrotate docker-logrotate docker-selinux docker-engine-selinux docker-engine -y 
+sudo dnf config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo -y
+sudo dnf install docker-ce docker-ce-cli containerd.io docker-compose-plugin -y
+
+sudo systemctl start docker
+sudo systemctl enable docker
+
+sudo groupadd docker
+sudo usermod -aG docker $USER
+newgrp docker
+
+
+#Docker Images
+docker run --name=mysql --restart on-failure -d mysql/mysql-server:8.0 -p 3306:3306
+
+
+echo "================================= MYSQL PASSWORD ================================="
+docker logs mysql 2>&1 | grep GENERATED # MYSQL Password 
+echo "docker exec -it mysql mysql -uroot -p"
+echo "ALTER USER 'root'@'%' IDENTIFIED BY 'nqSK3JMd0DL0OLggCDTjHRu8S1UTrCVbCuTr1uV9VU';"
+echo "FLUSH PRIVILEGES;"
+echo "================================= MYSQL PASSWORD ================================="
+
+
+docker volume create phpmyadmin-volume
+docker run --name phpmyadmin -v phpmyadmin-volume:/etc/phpmyadmin/config.user.inc.php --link mysql:db -p 88:80 -d phpmyadmin/phpmyadmin
 
 
 #Extensions
