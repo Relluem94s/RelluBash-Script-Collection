@@ -17,6 +17,7 @@
 declare -a Plugins=("RelluEssentials" "RelluSGA" "CaptureSpleef");
 pathToRepos="/home/rellu/repos/";
 pathToServer="/home/rellu/repos/test-server/plugins/";
+rcon_password="password"
 ###########################################################################################
 #                                     DO NOT TOUCH THE CODE                               #
 ###########################################################################################
@@ -82,7 +83,7 @@ done
 echo -en "\e[0m"
 
 
-mcrcon -p password reload # for rcon mcrcon is needed and can be found here https://src.fedoraproject.org/rpms/mcrcon
+mcrcon -p $rcon_password reload # for rcon mcrcon is needed and can be found here https://src.fedoraproject.org/rpms/mcrcon
 
 #
 #
