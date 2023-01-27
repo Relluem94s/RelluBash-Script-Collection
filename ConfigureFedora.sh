@@ -22,7 +22,7 @@ sudo xdg-open /etc/dnf/dnf.conf
 sudo dnf update -y --refresh
 sudo dnf upgrade -y
 
-sudo dnf install -y wget tmux remmina ranger vim gnome-tweak-tool gnome-extensions-app dnf-plugins-core chrome-gnome-shell arc-theme \
+sudo dnf install -y wget tmux remmina ranger vim gnome-tweak-tool gnome-extensions-app dnf-plugins-core stacer guake chrome-gnome-shell arc-theme \
 vlc wine unzip VirtualBox git git-lfs gitk xournalpp java-11-openjdk  java-11-openjdk-devel flameshot \
 openvpn NetworkManager-openvpn NetworkManager-openvpn-gnome youtube-dl keepassxc lutris shred shotcut ranger htop python3-pip parallel pavucontrol 
 
@@ -39,8 +39,7 @@ printf "[gitlab.com_paulcarroty_vscodium_repo]\nname=download.vscodium.com\nbase
 sudo dnf install codium -y
 
 
-cp .bashrc ~/.bashrc
-cp .tmux.conf ~/.tmux.conf
+
 
 #Keyboard Shortcuts
 gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/']"
@@ -94,6 +93,18 @@ echo "================================= MYSQL PASSWORD =========================
 
 docker volume create phpmyadmin-volume
 docker run --name phpmyadmin -v phpmyadmin-volume:/etc/phpmyadmin/config.user.inc.php --link mysql:db -p 88:80 -d phpmyadmin/phpmyadmin
+
+
+
+#Bash Config
+cp .bashrc ~/.bashrc
+
+#TMUX Config
+cp .tmux.conf ~/.tmux.conf
+
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+git clone https://github.com/tmux-plugins/tmux-cpu ~/.tmux/plugins/tmux-cpu
+
 
 
 #Extensions

@@ -24,9 +24,3 @@ export PS1="\[$(tput bold)\]\[\033[38;5;220m\]\u\[$(tput sgr0)\]\[$(tput sgr0)\]
 
 
 export PATH=$PATH:"~/repos/RelluBash-Script-Collection/"
-export PATH="$HOME/repos/chromium/depot_tools/:$PATH"
-
-
-# Load Angular CLI autocompletion.
-source <(ng completion script)
-export GOPATH=$HOME/go
