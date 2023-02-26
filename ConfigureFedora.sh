@@ -23,7 +23,7 @@ sudo dnf update -y --refresh
 sudo dnf upgrade -y
 
 sudo dnf install -y wget tmux remmina ranger vim gnome-tweak-tool gnome-extensions-app dnf-plugins-core stacer guake chrome-gnome-shell arc-theme \
-vlc wine unzip VirtualBox git git-lfs gitk xournalpp java-11-openjdk  java-11-openjdk-devel flameshot \
+vlc wine unzip VirtualBox git git-lfs gitk xournalpp java-11-openjdk  java-11-openjdk-devel flameshot dolphin \
 openvpn NetworkManager-openvpn NetworkManager-openvpn-gnome youtube-dl keepassxc lutris shred shotcut ranger htop python3-pip parallel pavucontrol 
 
 sudo dnf remove -y fedora-chromium-config
@@ -104,6 +104,14 @@ cp .tmux.conf ~/.tmux.conf
 
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 git clone https://github.com/tmux-plugins/tmux-cpu ~/.tmux/plugins/tmux-cpu
+
+
+
+#Nautilus Config
+
+cp filemanager/scripts/* ~/.local/share/nautilus/scripts/
+cp filemanager/templates/* ~/Templates
+
 
 
 
