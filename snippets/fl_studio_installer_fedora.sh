@@ -23,6 +23,6 @@ echo "${files[0]}"
 
 wine ${files[0]}
 
-rm -rf /tmp/fl_studio
+# rm -rf /tmp/fl_studio
 
 
