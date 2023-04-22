@@ -117,13 +117,15 @@ cp filemanager/templates/* ~/Templates
 
 #Extensions
 xdg-open https://extensions.gnome.org/extension/3628/arcmenu/
+xdg-open https://extensions.gnome.org/extension/4412/advanced-alttab-window-switcher/
+xdg-open https://extensions.gnome.org/extension/4012/gnome-bedtime/
+xdg-open https://extensions.gnome.org/extension/3952/workspace-indicator/
+xdg-open https://extensions.gnome.org/extension/1319/gsconnect/
 xdg-open https://extensions.gnome.org/extension/779/clipboard-indicator/
 xdg-open https://extensions.gnome.org/extension/3396/color-picker/
-xdg-open https://extensions.gnome.org/extension/1082/cpufreq/
 xdg-open https://extensions.gnome.org/extension/1160/dash-to-panel/
-xdg-open https://extensions.gnome.org/extension/4135/espresso/
+xdg-open https://extensions.gnome.org/extension/517/caffeine/
 xdg-open https://extensions.gnome.org/extension/841/freon/
 xdg-open https://extensions.gnome.org/extension/4099/no-overview/
-xdg-open https://extensions.gnome.org/extension/708/panel-osd/
 xdg-open https://extensions.gnome.org/extension/19/user-themes/
 xdg-open https://extensions.gnome.org/extension/36/lock-keys/
