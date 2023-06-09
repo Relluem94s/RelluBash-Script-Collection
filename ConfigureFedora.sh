@@ -24,7 +24,7 @@ sudo dnf upgrade -y
 
 sudo dnf install -y wget tmux remmina ranger vim gnome-tweak-tool gnome-extensions-app dnf-plugins-core stacer guake chrome-gnome-shell arc-theme \
 vlc wine unzip VirtualBox git git-lfs gitk xournalpp java-11-openjdk  java-11-openjdk-devel flameshot dolphin \
-openvpn NetworkManager-openvpn NetworkManager-openvpn-gnome youtube-dl keepassxc lutris shred shotcut ranger htop python3-pip parallel pavucontrol 
+openvpn NetworkManager-openvpn NetworkManager-openvpn-gnome youtube-dl keepassxc lutris shred shotcut ranger htop python3-pip parallel pavucontrol qrencode
 
 sudo dnf remove -y fedora-chromium-config
 
