@@ -10,9 +10,9 @@
 # Change 'pathToDevServer' to dev Server location (/home/rellu/repos/test-server"/)       #
 # Change 'plugin' to your git location folder name (RelluEssentials)                      #
 # Change 'bash_collection' to the folder name of the Scripts (RelluBash-Script-Collection)#
-# Change 'spigot_jar' to the name/version of Spigot (spigot-1.19.3.jar)                   #
-# Change 'spigot_jar' to the name/version of Spigot (spigot-1.19.3.jar)                   #
-# Change 'spigot_jar' to the name/version of Spigot (spigot-1.19.3.jar)                   #
+# Change 'spigot_jar' to the name/version of Spigot (spigot-1.20.1.jar)                   #
+# Change 'spigot_jar' to the name/version of Spigot (spigot-1.20.1.jar)                   #
+# Change 'spigot_jar' to the name/version of Spigot (spigot-1.20.1.jar)                   #
 #                                                                                         #
 #                                                                                         #
 ###########################################################################################
@@ -22,7 +22,7 @@ pathToRepos="/home/rellu/repos/";
 pathToDevServer="/home/rellu/repos/test-server";
 plugin="RelluEssentials";
 bash_collection="RelluBash-Script-Collection";
-spigot_jar="spigot-1.19.3.jar";
+spigot_jar="spigot-1.20.1.jar";
 docker_mysql="mysql";
 docker_phpmyadmin="phpmyadmin";
 ###########################################################################################
