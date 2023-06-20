@@ -32,6 +32,8 @@ prefix_copy="\e[92m[COPY]      ";
 main_color="\e[97m";
 version="v1.4";
 
+build_success=true;
+
 echo -e "\e[97m";
 echo -e $line_small;
 echo -e "\e[37mAuto Plugin Builder \e[94m$version";
@@ -65,6 +67,7 @@ for val in ${Plugins[@]}; do
         if [ "$OUTPUT" = "BUILD FAILURE" ]; then
             echo -e "$prefix_delete$main_color Skipped";
             echo -e "$prefix_copy$main_color Skipped";
+            build_success=false;
             continue
         fi
         
@@ -82,8 +85,10 @@ for val in ${Plugins[@]}; do
 done
 echo -en "\e[0m"
 
+if [ "$build_success" = true ] ; then
+    mcrcon -p $rcon_password reload # for rcon mcrcon is needed and can be found here https://src.fedoraproject.org/rpms/mcrcon
+fi
 
-mcrcon -p $rcon_password reload # for rcon mcrcon is needed and can be found here https://src.fedoraproject.org/rpms/mcrcon
 
 #
 #
