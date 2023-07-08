@@ -11,8 +11,6 @@
 # Change 'plugin' to your git location folder name (RelluEssentials)                      #
 # Change 'bash_collection' to the folder name of the Scripts (RelluBash-Script-Collection)#
 # Change 'spigot_jar' to the name/version of Spigot (spigot-1.20.1.jar)                   #
-# Change 'spigot_jar' to the name/version of Spigot (spigot-1.20.1.jar)                   #
-# Change 'spigot_jar' to the name/version of Spigot (spigot-1.20.1.jar)                   #
 #                                                                                         #
 #                                                                                         #
 ###########################################################################################
