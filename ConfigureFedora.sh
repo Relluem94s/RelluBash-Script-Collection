@@ -109,8 +109,7 @@ git clone https://github.com/tmux-plugins/tmux-cpu ~/.tmux/plugins/tmux-cpu
 
 #Nautilus Config
 
-cp filemanager/scripts/* ~/.local/share/nautilus/scripts/
-cp filemanager/templates/* ~/Templates
+sh ./snippets/CopyFileManagerScriptsAndTemplates.sh
 
 
 
