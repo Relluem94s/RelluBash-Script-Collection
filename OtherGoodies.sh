@@ -14,7 +14,7 @@
 #
 #
 #
-options=("Add OVPN File via Network Manager" "Open Port in IP Tables" "Generate UUID" "Tips" "Top 5 Commands" "Update Fedora" "Exit")
+options=("Add OVPN File via Network Manager" "Open Port in IP Tables" "Generate UUID" "Tips" "Top 5 Commands" "Update Fedora" "Copy File Manager Scripts and Templates" "Exit")
 select opt in "${options[@]}"
 
 do
@@ -41,6 +41,10 @@ do
             ;;
         "Update Fedora")
             ./snippets/UpdateFedora.sh
+            break
+            ;;
+        "Copy File Manager Scripts and Templates")
+            ./snippets/CopyFileManagerScriptsAndTemplates.sh
             break
             ;;
         "Exit")
