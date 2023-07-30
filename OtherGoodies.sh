@@ -14,7 +14,7 @@
 #
 #
 #
-options=("Add OVPN File via Network Manager" "Open Port in IP Tables" "Exit")
+options=("Add OVPN File via Network Manager" "Open Port in IP Tables" "Generate UUID" "Tips" "Top 5 Commands" "Update Fedora" "Exit")
 select opt in "${options[@]}"
 
 do
@@ -23,8 +23,24 @@ do
             ./snippets/AddVPN.sh            
             break
             ;;
-            "Open Port in IP Tables")
+        "Open Port in IP Tables")
             ./snippets/OpenPort.sh
+            break
+            ;;
+        "Generate UUID")
+            ./snippets/GenerateUUID.sh
+            break
+            ;;
+        "Tips")
+            ./snippets/Tips.sh
+            break
+            ;;
+        "Top 5 Commands")
+            ./snippets/TopFiveCommands.sh
+            break
+            ;;
+        "Update Fedora")
+            ./snippets/UpdateFedora.sh
             break
             ;;
         "Exit")
