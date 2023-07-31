@@ -49,7 +49,7 @@ echo "Please add the following options (if not already set):"
 echo "max_parallel_downloads=15"
 echo "fastestmirror=true"
 echo "deltarpm=true"
-sudo xdg-open /etc/dnf/dnf.conf
+sudoedit /etc/dnf/dnf.conf
 echo " "
 echo " "
 echo " "
