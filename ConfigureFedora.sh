@@ -79,7 +79,7 @@ echo "Installing Flatpak Packages"
 flatpak install -y steam discord Sequeler signal
 echo " "
 echo "Installing pip Packages"
-pip install speedtest-cli
+pip install speedtest-cli backgroundremover
 echo " "
 echo "Adding VSCodium Repo"
 sudo rpmkeys --import https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/-/raw/master/pub.gpg
