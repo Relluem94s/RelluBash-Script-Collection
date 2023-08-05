@@ -5,7 +5,7 @@ IFS=$(echo -en "\n\b")
 mkdir free
 for var in "$@"
 do
-    backgroundremover -i "$file" -o "free/edit_$file.png"
+    backgroundremover -i "$var" -o "free/edit_$var.png"
 done
 
 IFS=$SAVEIFS
