@@ -2,7 +2,7 @@
 
 ###########################################################################################
 #                                    Auto Plugin Builder                                  #
-#                                  by Relluem94 2021 - 2022                               #
+#                                  by Relluem94 2021 - 2023                               #
 ###########################################################################################
 #                                                                                         #
 #                                                                                         #
@@ -31,7 +31,7 @@ prefix_delete="\e[91m[DELETE]    ";
 prefix_copy="\e[92m[COPY]      ";
 prefix_reload="\e[36m[Reload]    ";
 main_color="\e[97m";
-version="v1.4";
+version="v1.5";
 
 build_success=true;
 
