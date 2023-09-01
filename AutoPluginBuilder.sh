@@ -29,6 +29,7 @@ line_small="\e[37m------------------------------------------------------------";
 prefix_maven="\e[93m[MAVEN]     ";
 prefix_delete="\e[91m[DELETE]    ";
 prefix_copy="\e[92m[COPY]      ";
+prefix_reload="\e[36m[Reload]    ";
 main_color="\e[97m";
 version="v1.4";
 
@@ -40,7 +41,8 @@ echo -e "\e[37mAuto Plugin Builder \e[94m$version";
 echo -e $line_small;
 echo -e "\e[37mChecks for each Plugin in the Array if changes are reported by git. ";
 echo -e "\e[37mYou can build without changes if you append ’ignoreGit’ after the script name.";
-echo -e "\e[37mExample:\e[36m ./AutoPluginBuilder.sh ignoreGit";
+echo -e "\e[37mYou can build without tests if you append ’skipTest’ after the script name.";
+echo -e "\e[37mExample:\e[36m ./AutoPluginBuilder.sh ignoreGit skipTest";
 echo -e "";
 
 list=$(printf '%s' "$(IFS=,; printf '%s' "${Plugins[*]}")");
@@ -56,11 +58,17 @@ echo -e $line_small;
 echo -e "";
 
 for val in ${Plugins[@]}; do
-    if [[ `git -C $pathToRepos$val/ status --porcelain` ]] || [[ $1 = "ignoreGit" ]]; then
+    if [[ `git -C $pathToRepos$val/ status --porcelain` ]] || [[ $1 = "ignoreGit" ]] || [[ $2 = "ignoreGit" ]]; then
         echo -e $line;
         
         CMD="mvn -f $pathToRepos$val/ clean install";
-          echo -e "$prefix_maven$main_color $CMD";
+        
+        if [[ $1 = "skipTest" ]] || [[ $2 = "skipTest" ]]; then
+            CMD="$CMD -Dmaven.test.skip=true "
+        fi
+        
+        echo -e "$prefix_maven$main_color $CMD";
+        
         OUTPUT=$($CMD | grep '\[INFO\] BUILD' | sed 's/^\[INFO\] //g');
         echo -e "$prefix_maven$main_color $OUTPUT";
         
@@ -72,11 +80,11 @@ for val in ${Plugins[@]}; do
         fi
         
         CMD="rm -f $pathToServer${val,,}-*.jar";
-          echo -e "$prefix_delete$main_color $CMD";
+        echo -e "$prefix_delete$main_color $CMD";
         $CMD;
         
         CMD="cp $pathToRepos$val/target/${val,,}-*.jar $pathToServer";
-          echo -e "$prefix_copy$main_color $CMD";
+        echo -e "$prefix_copy$main_color $CMD";
         $CMD;
         
         echo -e $line;
@@ -85,7 +93,9 @@ for val in ${Plugins[@]}; do
 done
 echo -en "\e[0m"
 
+
 if [ "$build_success" = true ] ; then
+    echo -e "$prefix_reload$main_color Connecting to Server"
     mcrcon -p $rcon_password reload # for rcon mcrcon is needed and can be found here https://src.fedoraproject.org/rpms/mcrcon
 fi
 
