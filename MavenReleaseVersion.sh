@@ -1,10 +1,5 @@
 #!/bin/bash
 
-# TODO add java doc creator + add files.
-# TODO add parameter for version + do git tag with it
-# TODO push it --tags
-
-
 
 ###########################################################################################
 #                                    MavenReleaseVersion                                  #
@@ -18,6 +13,7 @@
 #                                      VARIABLES TO EDIT                                  #
 ###########################################################################################
 
+# None
 
 ###########################################################################################
 #                                     DO NOT TOUCH THE CODE                               #
@@ -25,15 +21,34 @@
 #
 #
 #
-line="\e[90m============================================================";
-line_small="\e[37m------------------------------------------------------------";
-prefix_maven="\e[93m[YELLOW]     ";
-prefix_delete="\e[91m[RED]    ";
-prefix_copy="\e[92m[GREEN]      ";
-prefix_reload="\e[36m[BLUE]    ";
-main_color="\e[97m";
-version="v0.1";
+name="MavenReleaseVersion";
+version="v0.2";
 
+
+if [ $# -lt 2 ]; then
+        echo "Usage of $name@$version: $0 pathToFolder version"
+        exit
+fi
+
+folder=$1
+version=$2
+
+shift 2
+
+cd $folder
+
+mvn versions:set versions:commit -DnewVersion=$version
+
+mvn javadoc:javadoc
+git add docs
+git commit -m "Updated docs"
+
+git add pom.xml
+git commit -m "Bumped to Version: $version"
+
+git tag $version
+
+git push && git push --tags
 
 #
 #
