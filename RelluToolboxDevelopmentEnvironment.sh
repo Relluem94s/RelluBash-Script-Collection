@@ -25,6 +25,7 @@ version="v1.0";
 
 tmux new-session -d -s bash-session 'bash';
 tmux select-pane -T "RelluToolbox - RelluBash-Script-Collection $version" 
+tmux send "cd shared" ENTER;
 tmux send "npm test" ENTER;
 
 tmux split-window -h;
