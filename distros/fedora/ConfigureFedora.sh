@@ -176,10 +176,10 @@ echo $SPACER
 echo " "
 echo " "
 echo "copy bash Config"
-cp ../config/.bashrc ~/.bashrc
+cp ../shared/config/.bashrc ~/.bashrc
 echo " "
 echo "tmux Config"
-cp ../config/.tmux.conf ~/.tmux.conf
+cp ../shared/config/.tmux.conf ~/.tmux.conf
 echo " "
 echo "cloning tmux pluginmanager"
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
@@ -187,8 +187,8 @@ echo " "
 echo "cloning tmux cpu plugin"
 git clone https://github.com/tmux-plugins/tmux-cpu ~/.tmux/plugins/tmux-cpu
 echo " "
-echo "Execute Nautilus Config (./snippets/CopyFileManagerScriptsAndTemplates.sh)"
-sh ./snippets/CopyFileManagerScriptsAndTemplates.sh
+echo "Execute Nautilus Config (../../snippets/CopyFileManagerScriptsAndTemplates.sh)"
+sh ../../snippets/CopyFileManagerScriptsAndTemplates.sh fedora
 echo " "
 echo " "
 echo " "

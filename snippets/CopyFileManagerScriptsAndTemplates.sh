@@ -16,12 +16,12 @@
 #
 echo "Copy Files..."
 
-if [ -d "filemanager" ]; then
-    cp filemanager/scripts/* ~/.local/share/nautilus/scripts/
-    cp filemanager/templates/* ~/Templates
+if [ "$1" = "fedora" ]; then
+    cp ../shared/filemanager/scripts/* ~/.local/share/nautilus/scripts/
+    cp ../shared/filemanager/templates/* ~/Templates
 else
-    cp ../filemanager/scripts/* ~/.local/share/nautilus/scripts/
-    cp ../filemanager/templates/* ~/Templates
+    cp ../distros/shared/filemanager/scripts/* ~/.local/share/nautilus/scripts/
+    cp ../distros/shared/filemanager/templates/* ~/Templates
 fi
 #
 #
