@@ -176,10 +176,10 @@ echo $SPACER
 echo " "
 echo " "
 echo "copy bash Config"
-cp .bashrc ~/.bashrc
+cp ../config/.bashrc ~/.bashrc
 echo " "
 echo "tmux Config"
-cp .tmux.conf ~/.tmux.conf
+cp ../config/.tmux.conf ~/.tmux.conf
 echo " "
 echo "cloning tmux pluginmanager"
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
