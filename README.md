@@ -5,13 +5,13 @@ Collection of Bash Scripts and other goodies i use.
 ## Scripts:
 
 - AutoPluginBuilder.sh (exec mvn, deletes old artifact and copies new one in target folder)
-  ![AutoPluginBuilder.sh](./img/AutoPluginBuilder.sh.png)
+  ![AutoPluginBuilder.sh](https://github.com/Relluem94s/RelluBash-Script-Collection/blob/412bb5155690a6881918f3331f22796790e26980/img/AutoPluginBuilder.sh.png)
   
 - AutoGitPull.sh (Fetch and Pull Git Repos)
-  ![AutoGitPull.sh](./img/AutoGitPull.png)
+  ![AutoGitPull.sh](https://github.com/Relluem94s/RelluBash-Script-Collection/blob/412bb5155690a6881918f3331f22796790e26980/img/AutoGitPull.png)
 
 - youtube-dl.sh (Prompts you to enter url and if audio only)
-  ![youtube-dl.sh](./img/youtube-dl.sh.png)
+  ![youtube-dl.sh](https://github.com/Relluem94s/RelluBash-Script-Collection/blob/412bb5155690a6881918f3331f22796790e26980/img/youtube-dl.sh.png)
   
 - ConfigureFedora.sh (does some configuration on a clean install)
 
@@ -20,4 +20,4 @@ Collection of Bash Scripts and other goodies i use.
 ## Other:
 
 - .bashrc
-  ![.bashrc](./img/bashrc.png)
+  ![.bashrc](https://github.com/Relluem94s/RelluBash-Script-Collection/blob/412bb5155690a6881918f3331f22796790e26980/img/bashrc.png)
