@@ -1,0 +1,3 @@
+[submodule "pi/gnome"]
+	path = pi/gnome
+	url = https://github.com/TheMaroonHatHacker/gnomeforpi
