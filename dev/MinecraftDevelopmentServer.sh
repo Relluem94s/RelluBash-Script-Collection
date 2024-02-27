@@ -33,6 +33,7 @@ version="v1.0";
 
 docker start $docker_mysql
 docker start $docker_phpmyadmin
+cd $pathToDevServer
 java -jar $spigot_jar -nogui
 
 #
