@@ -217,6 +217,7 @@ xdg-open https://extensions.gnome.org/extension/841/freon/
 xdg-open https://extensions.gnome.org/extension/4099/no-overview/
 xdg-open https://extensions.gnome.org/extension/19/user-themes/
 xdg-open https://extensions.gnome.org/extension/36/lock-keys/
+xdg-open https://extensions.gnome.org/extension/4928/mpris-label/
 echo " "
 echo " "
 echo " "
