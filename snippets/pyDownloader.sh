@@ -15,7 +15,7 @@ while [[ $# -gt 0 ]]; do
             ;;
         *)
             if [ -z "$URL_PARAMETER" ]; then
-                URL="$1"
+                URL_PARAMETER="$1"
             elif [ -z "$SUFFIX" ]; then
                 SUFFIX="$1"
             fi
@@ -28,7 +28,7 @@ done
 # Check URL
 
 if [ -z "$URL_PARAMETER" ]; then
-    echo "ERROR: URL missing"
+    echo "ERROR: URL_PARAMETER missing"
     exit 1
 fi
 

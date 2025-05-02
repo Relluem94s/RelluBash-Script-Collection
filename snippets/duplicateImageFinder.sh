@@ -1,91 +1,82 @@
 #!/bin/bash
-# Beschreibung: Findet visuell ähnliche Bilder mit ImageMagick v7, gruppiert Duplikate und gibt Statistiken aus (optimiert mit Hashing)
+# Duplikate über AE-Pixelvergleich erkennen
 
 if ! command -v magick >/dev/null 2>&1 || ! command -v compare >/dev/null 2>&1; then
-    echo "ImageMagick (magick) ist nicht installiert! Bitte installiere es (z. B. 'sudo apt install imagemagick')."
+    echo "ImageMagick (magick) ist nicht installiert! Bitte installiere es."
     exit 1
 fi
 
 if ! command -v parallel >/dev/null 2>&1; then
-    echo "GNU parallel ist nicht installiert! Bitte installiere es (z. B. 'sudo apt install parallel')."
+    echo "GNU parallel ist nicht installiert! Bitte installiere es."
     exit 1
 fi
 
 temp_dir=$(mktemp -d)
-threshold_value=5000
-hash_threshold=5
-export threshold_value hash_threshold
+threshold_value=1
+export threshold_value
 
-# Bilder finden (mit Leerzeichen-Unterstützung)
-mapfile -t -d '' images < <(find . -type f \( -iname "*.jpg" -o -iname "*.png" -o -iname "*.jpeg" \) -print0)
-
-# DEBUG: Ausgabe der gefundenen Dateien
-# printf 'Gefunden:\n'
-# printf '%s\n' "${images[@]}"
-
+mapfile -t -d '' images < <(find . -type f \( -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" \) -print0)
 total_images=${#images[@]}
-echo "Vergleiche $total_images Bilder..."
+echo "Vergleiche $total_images Bilder:"
 
-compute_hash() {
-    local img="$1"
-    local output_file="$2"
 
-    if [ ! -f "$img" ]; then
-        echo "Fehler: '$img' ist keine gültige Datei!" >&2
-        return
-    fi
-
-    hash=$(magick "$img" -resize 8x8! -colorspace Gray -format "%[fx:mean]" info: 2>/dev/null | md5sum | awk '{print $1}')
-    if [ -z "$hash" ]; then
-        echo "Fehler: Konnte Hash nicht berechnen für '$img'" >&2
-        return
-    fi
-
-    echo "$img|$hash" >> "$output_file"
-}
-export -f compute_hash
-
-temp_hashes="$temp_dir/hashes.txt"
-touch "$temp_hashes"
-
-printf '%s\0' "${images[@]}" | parallel --null compute_hash {} "$temp_hashes"
-
-compare_with_hash() {
+compare_images() {
     local img1="$1"
-    local hash1="$2"
-    local img2="$3"
-    local hash2="$4"
-    local output_file="$5"
+    local img2="$2"
+    local output_file="$3"
 
     if [ ! -f "$img1" ] || [ ! -f "$img2" ]; then
         return
     fi
 
-    diff=$(echo "$hash1 $hash2" | awk '{print ($1 == $2) ? 0 : 10}')
-
-    if [ "$diff" -le "$hash_threshold" ]; then
-        diff_output=$(compare -metric MAE "$img1" "$img2" null: 2>&1)
-        diff_int=$(echo "$diff_output" | awk '{print $1}' | xargs printf "%.0f" 2>/dev/null)
-
-        if [[ "$diff_int" =~ ^[0-9]+$ ]] && (( diff_int < threshold_value )); then
-            echo "$img1|$img2" >> "$output_file"
-            echo "Debug: Bilder als ähnlich erkannt: '$img1' und '$img2' (diff_int=$diff_int)" >&2
-        fi
+    size1=$(magick identify -format "%w x %h" "$img1" 2>>"$temp_dir/identify_errors.log")
+    size2=$(magick identify -format "%w x %h" "$img2" 2>>"$temp_dir/identify_errors.log")
+    if [ -z "$size1" ] || [ -z "$size2" ]; then
+        return
     fi
-}
-export -f compare_with_hash
+    if [ "$size1" != "$size2" ]; then
+        return
+    fi
 
-echo "Starte Hash-basierte Vergleiche..."
+    local temp_img1="$temp_dir/temp1_$(echo "$img1" | tr -dc 'a-zA-Z0-9').png"
+    local temp_img2="$temp_dir/temp2_$(echo "$img2" | tr -dc 'a-zA-Z0-9').png"
+    if ! magick "$img1" -strip "$temp_img1" 2>>"$temp_dir/magick_errors.log"; then
+        return
+    fi
+    if ! magick "$img2" -strip "$temp_img2" 2>>"$temp_dir/magick_errors.log"; then
+        return
+    fi
+
+
+    if [ ! -f "$temp_img1" ] || [ ! -f "$temp_img2" ]; then
+        return
+    fi
+
+
+    ae_diff=$(compare -metric AE "$temp_img1" "$temp_img2" null: 2>>"$temp_dir/compare_errors.log")
+    exit_code=$?
+
+
+
+    if [ $exit_code -eq 0 ] && { [ -z "$ae_diff" ] || [ "$ae_diff" -eq 0 ]; }; then
+        echo "$img1|$img2" >> "$output_file"
+    fi
+
+    rm -f "$temp_img1" "$temp_img2"
+}
+
+
+export -f compare_images
+
 temp_result="$temp_dir/results.txt"
 touch "$temp_result"
 
-while IFS='|' read -r img1 hash1; do
-    while IFS='|' read -r img2 hash2; do
-        if [[ "$img1" < "$img2" ]]; then
-            printf '%s\0%s\0%s\0%s\0%s\0' "$img1" "$hash1" "$img2" "$hash2" "$temp_result"
-        fi
-    done < "$temp_hashes"
-done < "$temp_hashes" | parallel --null -0 compare_with_hash {1} {2} {3} {4} {5}
+for ((i = 0; i < total_images; i++)); do
+    for ((j = i + 1; j < total_images; j++)); do
+        compare_images "${images[i]}" "${images[j]}" "$temp_result"
+    done
+done
+echo "Debug: Insgesamt $(( (total_images * (total_images - 1)) / 2 )) Vergleiche durchgeführt" >&2
 
 declare -A groups
 group_num=0
@@ -135,4 +126,3 @@ done
 
 rm -rf "$temp_dir"
 echo "Fertig!"
-
