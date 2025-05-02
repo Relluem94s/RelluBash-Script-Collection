@@ -13,7 +13,7 @@
 #
 #
 #
-version="v1.1";
+version="v1.2";
 SPACER="================================================================================"
 #
 #
@@ -189,6 +189,14 @@ git clone https://github.com/tmux-plugins/tmux-cpu ~/.tmux/plugins/tmux-cpu
 echo " "
 echo "Execute Nautilus Config (../../snippets/CopyFileManagerScriptsAndTemplates.sh)"
 sh ../../snippets/CopyFileManagerScriptsAndTemplates.sh fedora
+echo " "
+echo "Copy Some Scripts to User Bin (../../snippets/*.sh)"
+mkdir ~/bin
+cp ../../snippets/hostInfo.sh ~/bin/hostInfo
+cp ../../snippets/serverConnect.sh ~/bin/serverConnect
+cp ../../snippets/pyDownloader.sh ~/bin/pyDl
+cp ../../snippets/youtube-dl.sh ~/bin/yt-dl
+cp ../../snippets/dumpDatabase.sh ~/bin/dumpDatabase
 echo " "
 echo " "
 echo " "

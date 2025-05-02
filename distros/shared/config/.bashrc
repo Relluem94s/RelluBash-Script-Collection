@@ -11,15 +11,23 @@ fi
 force_color_prompt=yes
 
 # User specific environment
-if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]
-then
-    PATH="$HOME/.local/bin:$HOME/bin:$PATH"
+if [[ ":$PATH:" != *":$HOME/.local/bin:"* ]]; then
+    PATH="$HOME/.local/bin:$PATH"
 fi
-export PATH
-export PATH=$PATH:/usr/local/go/bin
-export GOPATH="$HOME/go"
-export PATH="$GOPATH/bin:$PATH"
 
+if [[ ":$PATH:" != *":$HOME/bin:"* ]]; then
+    PATH="$HOME/bin:$PATH"
+fi
+if [[ ":$PATH:" != *":/usr/local/go/bin:"* ]]; then
+    PATH="$PATH:/usr/local/go/bin"
+fi
+
+export GOPATH="$HOME/go"
+if [[ ":$PATH:" != *":$GOPATH/bin:"* ]]; then
+    PATH="$GOPATH/bin:$PATH"
+fi
+
+export PATH
 export LIBVA_DRIVER_NAME=iHD
 
 function parse_git_branch {
