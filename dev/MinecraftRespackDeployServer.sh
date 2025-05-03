@@ -23,11 +23,16 @@ pathToRepos="/home/rellu/repos/";
 #
 version="v1.0";
 
+cd $pathToRepos
+cd RelluSGA-Resource-Pack
+./build.sh
+
+
 SSH_PASSWORD=$SERVER_PASSWORD_RELLUEM94_DE
 SSH_HOST=$SERVER_HOST_RELLUEM94_DE
 SSH_USER=$SERVER_USER_RELLUEM94_DE
 SSH_PORT=$SERVER_PORT_RELLUEM94_DE
-
+RESPACK_FOLDER=$SERVER_MINECRAFT_RESPACK_FOLDER_RELLUEM94_DE
 
 
 cd $pathToRepos
@@ -41,7 +46,7 @@ if [ $? -ne 0 ]; then
 fi
 
 
-REMOTE_PATH="${SSH_USER}@${SSH_HOST}:/var/www/html/relluem94.de/uploads/RelluSGA-Resource-Pack"
+REMOTE_PATH="${SSH_USER}@${SSH_HOST}:${RESPACK_FOLDER}"
 
 ZIP_FILE=$(find ./target/ -maxdepth 1 -type f -name "*.zip" | head -n 1)
 INDEX_FILE="./index/index.php"
@@ -75,5 +80,3 @@ if [ $? -ne 0 ]; then
 else
     echo "ZIP file and index.php successfully copied to the server."
 fi
-
-
