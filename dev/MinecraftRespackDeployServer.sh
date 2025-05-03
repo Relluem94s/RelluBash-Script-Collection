@@ -63,7 +63,7 @@ if [ ! -f "$INDEX_FILE" ]; then
     exit 1
 fi
 
-echo "Kopiere $ZIP_FILE nach $REMOTE_PATH..."
+echo "Copy $ZIP_FILE to $REMOTE_PATH..."
 SSHPASS="$SSH_PASSWORD" sshpass -e scp -P "$SSH_PORT" "$ZIP_FILE" "$REMOTE_PATH"
 
 if [ $? -ne 0 ]; then
@@ -71,7 +71,7 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
-echo "Kopiere $INDEX_FILE nach $REMOTE_PATH..."
+echo "Copy $INDEX_FILE to $REMOTE_PATH..."
 SSHPASS="$SSH_PASSWORD" sshpass -e scp -P "$SSH_PORT" "$INDEX_FILE" "$REMOTE_PATH"
 
 if [ $? -ne 0 ]; then
