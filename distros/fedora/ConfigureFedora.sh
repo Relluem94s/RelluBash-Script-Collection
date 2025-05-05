@@ -193,9 +193,10 @@ echo " "
 echo "Copy Some Scripts to User Bin (../../snippets/*.sh)"
 mkdir ~/bin
 cp ../../snippets/hostInfo.sh ~/bin/hostInfo
-cp ../../snippets/serverConnect.sh ~/bin/serverConnect
+cp ../../snippets/connectServer.sh ~/bin/connectServer
 cp ../../snippets/pyDownloader.sh ~/bin/pyDl
-cp ../../snippets/youtube-dl.sh ~/bin/yt-dl
+cp ../../snippets/youtube-dl.sh ~/bin/ytDl
+cp ../../snippets/phpServer.sh ~/bin/phpServer
 cp ../../snippets/dumpDatabase.sh ~/bin/dumpDatabase
 echo " "
 echo " "
