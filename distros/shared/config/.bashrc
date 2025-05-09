@@ -67,7 +67,8 @@ parse_git_status() {
 } 
 
 
-export PS1="\[$(tput bold)\]\[\033[38;5:220m\]\u\[$(tput sgr0)\] \[\033[38;5:242m\]>> \[\033[38;5:39m\]\w\[$(tput sgr0)\] \$(parse_git_status) \[\033[38;5:242m\]\\$ \[$(tput sgr0)\]"
+export PS1="\[$(tput bold)\]\[\033[38;5;220m\]\u\[$(tput sgr0)\] \[\033[38;5;242m\]>> \[\033[38;5;39m\]\w\[$(tput sgr0)\] \[\033[0m\]\$(parse_git_status) \[\033[38;5;242m\]\\$\[$(tput sgr0)\] "
+
 
 
 # User specific aliases and functions
