@@ -23,11 +23,6 @@ pathToRepos="/home/rellu/repos/";
 #
 version="v1.0";
 
-cd $pathToRepos
-cd RelluSGA-Resource-Pack
-./build.sh
-
-
 SSH_PASSWORD=$SERVER_PASSWORD_RELLUEM94_DE
 SSH_HOST=$SERVER_HOST_RELLUEM94_DE
 SSH_USER=$SERVER_USER_RELLUEM94_DE
