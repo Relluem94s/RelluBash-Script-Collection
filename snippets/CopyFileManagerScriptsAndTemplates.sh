@@ -18,9 +18,11 @@ echo "Copy Files..."
 
 if [ "$1" = "fedora" ]; then
     cp ../shared/filemanager/scripts/* ~/.local/share/nautilus/scripts/
+    cp ../shared/filemanager/scripts/* ~/.local/share/nemo/scripts/
     cp ../shared/filemanager/templates/* ~/Templates
 else
     cp ../distros/shared/filemanager/scripts/* ~/.local/share/nautilus/scripts/
+    cp ../distros/shared/filemanager/scripts/* ~/.local/share/nemo/scripts/
     cp ../distros/shared/filemanager/templates/* ~/Templates
 fi
 #

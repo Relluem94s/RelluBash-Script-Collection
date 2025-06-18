@@ -90,7 +90,7 @@ while [ $attempt -le $MAX_ATTEMPTS ]; do
   fi
 done
 
-./SetFolderThumbnail.sh
+SetFolderThumbnail.sh
 if [ $? -ne 0 ]; then
   echo "Error executing SetThumbnail.sh"
   exit 1
