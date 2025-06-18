@@ -195,6 +195,7 @@ mkdir ~/bin
 cp ../../snippets/hostInfo.sh ~/bin/hostInfo
 cp ../../snippets/connectServer.sh ~/bin/connectServer
 cp ../../snippets/pyDownloader.sh ~/bin/pyDl
+cp ../../snippets/SetFolderThumbnail.sh ~/bin/SetFolderThumbnail.sh
 cp ../../snippets/youtube-dl.sh ~/bin/ytDl
 cp ../../snippets/phpServer.sh ~/bin/phpServer
 cp ../../snippets/dumpDatabase.sh ~/bin/dumpDatabase
