@@ -13,7 +13,7 @@
 #
 #
 #
-version="v1.3";
+version="v1.4";
 SPACER="================================================================================"
 #
 #
@@ -81,13 +81,28 @@ git clone --depth=1 https://github.com/RetroPie/RetroPie-Setup.git || { echo "Fa
 cd RetroPie-Setup && sudo ./retropie_setup.sh
 
 echo " "
-echo "Copying cec_remote.service to /lib/systemd/system/..."
+echo "Copying cec_remote.service, cecremote.sh, and cecremotestart.sh..."
 if [ -f "~/repos/RelluBash-Script-Collection/distros/pi/cec_remote/cec_remote.service" ]; then
     sudo cp ~/repos/RelluBash-Script-Collection/distros/pi/cec_remote/cec_remote.service /lib/systemd/system/cec_remote.service
 else
     echo "Error: cec_remote.service not found at ~/repos/RelluBash-Script-Collection/distros/pi/cec_remote/"
     exit 1
 fi
+
+if [ -f "~/repos/RelluBash-Script-Collection/distros/pi/cec_remote/cecremote.sh" ]; then
+    cp ~/repos/RelluBash-Script-Collection/distros/pi/cec_remote/cecremote.sh ~/
+else
+    echo "Error: cecremote.sh not found at ~/repos/RelluBash-Script-Collection/distros/pi/cec_remote/"
+    exit 1
+fi
+
+if [ -f "~/repos/RelluBash-Script-Collection/distros/pi/cec_remote/cecremotestart.sh" ]; then
+    cp ~/repos/RelluBash-Script-Collection/distros/pi/cec_remote/cecremotestart.sh ~/
+else
+    echo "Error: cecremotestart.sh not found at ~/repos/RelluBash-Script-Collection/distros/pi/cec_remote/"
+    exit 1
+fi
+
 
 echo " "
 echo "Reloading systemd daemon..."
