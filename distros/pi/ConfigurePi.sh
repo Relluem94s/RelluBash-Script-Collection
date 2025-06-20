@@ -13,7 +13,7 @@
 #
 #
 #
-version="v1.2";
+version="v1.3";
 SPACER="================================================================================"
 #
 #
@@ -114,13 +114,17 @@ echo " "
 
 
 echo " "
-echo "Enter Hostname (letters, numbers, hyphens only):"
+echo "Enter Hostname (letters, numbers, hyphens only, press Enter to keep current hostname):"
 read hostname
-if [[ "$hostname" =~ ^[a-zA-Z0-9-]+$ ]]; then
-    echo "Setting Hostname to: $hostname"
-    sudo hostnamectl set-hostname "$hostname"
+if [ -z "$hostname" ]; then
+    echo "Keeping current hostname: $(hostname)"
 else
-    echo "Error: Invalid hostname. Using default hostname."
+    if [[ "$hostname" =~ ^[a-zA-Z0-9-]+$ ]]; then
+        echo "Setting Hostname to: $hostname"
+        sudo hostnamectl set-hostname "$hostname"
+    else
+        echo "Error: Invalid hostname. Keeping current hostname: $(hostname)"
+    fi
 fi
 
 echo " "
