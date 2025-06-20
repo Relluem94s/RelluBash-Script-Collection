@@ -111,8 +111,12 @@ echo " "
 ###########################################################################################
 #                                               Config                                    #
 ###########################################################################################
-
-
+echo $SPACER
+echo " "
+echo "Configuration"
+echo " "
+echo $SPACER
+echo " "
 echo " "
 echo "Enter Hostname (letters, numbers, hyphens only, press Enter to keep current hostname):"
 read hostname
