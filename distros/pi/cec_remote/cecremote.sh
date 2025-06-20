@@ -142,7 +142,7 @@ do
                         ;;
 		    "forward")
                         echo Key Pressed: forward
-		               	matchbox-keyboard &
+                        
                         ;;
 		    "backward")
                         echo Key Pressed: backward
