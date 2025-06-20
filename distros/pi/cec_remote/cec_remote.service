@@ -7,6 +7,3 @@ ExecStart=/home/${currentUser}/cecremotestart.sh
 
 [Install]
 WantedBy=multi-user.target
-
-
-#sudo nano /lib/systemd/system/cec_remote.service
