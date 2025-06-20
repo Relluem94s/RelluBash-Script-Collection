@@ -13,7 +13,7 @@
 #
 #
 #
-version="v1.1";
+version="v1.2";
 SPACER="================================================================================"
 #
 #
@@ -42,54 +42,69 @@ echo $SPACER
 echo " "
 echo " "
 echo "Updating Pi"
-sudo apt update
-sudo apt upgrade -y
+sudo apt update || { echo "Failed to update packages"; exit 1; }
+sudo apt upgrade -y || { echo "Failed to upgrade packages"; exit 1; }
+
 echo " "
 echo "Installing Packages"
 
-sudo apt install git tmux liferea ranger cec-utils ydotool wayfire lightdm
+sudo apt install git tmux liferea ranger cec-utils ydotool wayfire lightdm || { echo "Failed to install packages"; exit 1; 
 
+echo " "
+echo "Copying bash config..."
+if [ -f "../shared/config/.bashrc" ]; then
+    cp ../shared/config/.bashrc ~/.bashrc
+else
+    echo "Warning: .bashrc not found at ../shared/config/.bashrc"
+fi
 
-echo "copy bash Config"
-cp ../shared/config/.bashrc ~/.bashrc
 echo " "
-echo "tmux Config"
-cp ../shared/config/.tmux.conf ~/.tmux.conf
+echo "Copying tmux config,..."
+if [ -f "../shared/config/.tmux.conf" ]; then
+    cp ../shared/config/.tmux.conf ~/.tmux.conf
+else
+    echo "Warning: .tmux.conf not found at ../shared/config/.tmux.conf"
+fi
+
 echo " "
-echo "cloning tmux pluginmanager"
-git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+echo "Cloning tmux plugin manager..."
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm || { echo "Failed to clone tmux plugin manager"; exit 1; }
+
 echo " "
-echo "cloning tmux cpu plugin"
-git clone https://github.com/tmux-plugins/tmux-cpu ~/.tmux/plugins/tmux-cpu
+echo "Cloning tmux CPU plugin..."
+git clone https://github.com/tmux-plugins/tmux-cpu ~/.tmux/plugins/tmux-cpu || { echo "Failed to clone tmux CPU plugin"; exit 1; }
 
 echo " "
 echo "Installing RetroPie..."
 cd ~/repos
-git clone --depth=1 https://github.com/RetroPie/RetroPie-Setup.git
+git clone --depth=1 https://github.com/RetroPie/RetroPie-Setup.git || { echo "Failed to clone RetroPie"; exit 1; }
 cd RetroPie-Setup && sudo ./retropie_setup.sh
-
-
 
 echo " "
 echo "Copying cec_remote.service to /lib/systemd/system/..."
-cp ~/repos/RelluBash-Script-Collection/distros/pi/cec_remote/cec_remote.service /lib/systemd/system/cec_remote.service
+if [ -f "~/repos/RelluBash-Script-Collection/distros/pi/cec_remote/cec_remote.service" ]; then
+    sudo cp ~/repos/RelluBash-Script-Collection/distros/pi/cec_remote/cec_remote.service /lib/systemd/system/cec_remote.service
+else
+    echo "Error: cec_remote.service not found at ~/repos/RelluBash-Script-Collection/distros/pi/cec_remote/"
+    exit 1
+fi
+
 echo " "
 echo "Reloading systemd daemon..."
-sudo systemctl daemon-reload
+sudo systemctl daemon-reload || { echo "Failed to reload systemd"; exit 1; }
+
 echo " "
 echo "Enabling cec_remote.service..."
-sudo systemctl enable cec_remote.service
+sudo systemctl enable cec_remote.service || { echo "Failed to enable cec_remote.service"; exit 1; }
+
 echo " "
 echo "Starting cec_remote.service..."
-sudo systemctl start cec_remote.service
-
-
+sudo systemctl start cec_remote.service || { echo "Failed to start cec_remote.service"; exit 1; }
 
 echo " "
 echo " "
 echo " "
 echo " "
-
 
 
 
@@ -99,10 +114,14 @@ echo " "
 
 
 echo " "
-echo "Enter Hostname:"
+echo "Enter Hostname (letters, numbers, hyphens only):"
 read hostname
-echo "Setting Hostname to: $hostname"
-hostnamectl set-hostname $hostname
+if [[ "$hostname" =~ ^[a-zA-Z0-9-]+$ ]]; then
+    echo "Setting Hostname to: $hostname"
+    sudo hostnamectl set-hostname "$hostname"
+else
+    echo "Error: Invalid hostname. Using default hostname."
+fi
 
 echo " "
 echo "Setting up tmpfs for /var/log and /tmp..."
@@ -118,7 +137,7 @@ echo "Disabling unnecessary logging in rsyslog..."
 sudo sed -i 's/^\*.info/#*.info/' /etc/rsyslog.conf
 sudo sed -i 's/^authpriv/#authpriv/' /etc/rsyslog.conf
 sudo sed -i 's/^cron/#cron/' /etc/rsyslog.conf
-sudo systemctl restart rsyslog
+sudo systemctl restart rsyslog || { echo "Failed to restart rsyslog"; exit 1; }
 
 echo " "
 echo "Disabling swap..."
@@ -186,6 +205,9 @@ fi
 if ! grep -q "gpu_mem=128" /boot/config.txt; then
     echo "gpu_mem=128" | sudo tee -a /boot/config.txt
 fi
+if ! grep -q "hdmi_enable_cec=1" /boot/config.txt; then
+    echo "hdmi_enable_cec=1" | sudo tee -a /boot/config.txt
+fi
 
 echo " "
 echo "Applying noatime to root filesystem..."
@@ -206,6 +228,10 @@ else
 fi
 
 echo " "
+echo "Disabling unnecessary services..."
+sudo systemctl disable cups samba
+
+echo " "
 echo " "
 echo " "
 echo " "
@@ -222,5 +248,11 @@ echo $SPACER
 echo " "
 echo " "
 
-echo "Rebooting to apply changes..."
-sudo reboot
+echo "Reboot required to apply changes. Reboot now? (y/n)"
+read -r reboot_choice
+if [ "$reboot_choice" = "y" ] || [ "$reboot_choice" = "Y" ]; then
+    echo "Rebooting..."
+    sudo reboot
+else
+    echo "Reboot skipped. Please reboot manually to apply changes."
+fi
