@@ -7,13 +7,13 @@ function keychar {
     parin2pos=$((parin2 % parin1len)) #position mod
     char=${parin1:parin2pos:1} #char key to simulate
     if [ "$parin2" -gt 0 ]; then #if same key pressed multiple times, delete previous char; write a, delete a write b, delete b write c, ...
-        ydotool key "BackSpace"
+        xdotool key "BackSpace"
     fi
     #special cases for xdotool ( X Keysyms )
     if [ "$char" = " " ]; then char="space"; fi
     if [ "$char" = "." ]; then char="period"; fi
     if [ "$char" = "-" ]; then char="minus"; fi
-    ydotool key $char
+    xdotool key $char
 }
 datlastkey=$(date +%s%N)
 strlastkey=""
@@ -22,7 +22,7 @@ intkeychar=0
 intmsbetweenkeys=2000 #two presses of a key sooner that this makes it delete previous key and write the next one (a->b->c->1->a->...)
 intmousestartspeed=10 #mouse starts moving at this speed (pixels per key press)
 intmouseacc=10 #added to the mouse speed for each key press (while holding down key, more key presses are sent from the remote)
-intmousespeed=30
+intmousespeed=10
 
 while read oneline
 do
@@ -48,7 +48,7 @@ do
             if [ "$strid" != "$strlastid" ]; then
                 case "$strkey" in
                     "1")
-                        ydotool key "BackSpace"
+                        xdotool key "BackSpace"
                         ;;
                     "2")
                         keychar "abc2" intkeychar
@@ -78,39 +78,42 @@ do
                         keychar " 0.-" intkeychar
                         ;;
                     "previous channel")
-                        ydotool key "Return" #Enter
+                        xdotool key "Return" #Enter
                         ;;
                     "channel up")
-                        ydotool click 4 #mouse scroll up
+                        xdotool click 4 #mouse scroll up
                         ;;
                     "channel down")
-                        ydotool click 5 #mouse scroll down
+                        xdotool click 5 #mouse scroll down
                         ;;
                     "channels list")
-                        ydotool click 3 #right mouse button click
+                        xdotool click 3 #right mouse button click
                         ;;
-		            "up")
-                        ydotool mousemove -x 0 -y$(( 0 - intmousespeed ))
-                        intmousespeed=$((intmousespeed + intmouseacc))
+                    "up")
+                        intpixels=$((-1 * intmousespeed))
+                        xdotool mousemove_relative -- 0 $intpixels #move mouse up
+                        intmousespeed=$((intmousespeed + intmouseacc)) #speed up
                         ;;
                     "down")
-                        ydotool mousemove -x 0 -y$intmousespeed
-                        intmousespeed=$((intmousespeed + intmouseacc))
+                        intpixels=$(( 1 * intmousespeed))
+                        xdotool mousemove_relative -- 0 $intpixels #move mouse down
+                        intmousespeed=$((intmousespeed + intmouseacc)) #speed up
                         ;;
                     "left")
-                        ydotool mousemove -x$(( 0 - intmousespeed )) -y 0
-                        intmousespeed=$((intmousespeed + intmouseacc))
+                        intpixels=$((-1 * intmousespeed))
+                        xdotool mousemove_relative -- $intpixels 0 #move mouse left
+                        intmousespeed=$((intmousespeed + intmouseacc)) #speed up
                         ;;
                     "right")
-                        ydotool mousemove -x$intmousespeed -y 0
-                       intmousespeed=$((intmousespeed + intmouseacc))
+                        intpixels=$(( 1 * intmousespeed))
+                        xdotool mousemove_relative -- $intpixels 0 #move mouse right
+                        intmousespeed=$((intmousespeed + intmouseacc)) #speed up
                         ;;
                     "select")
-                        ydotool click 0x40 #left mouse button click
-			ydotool click 0x80
+                        xdotool click 1 #left mouse button click
                         ;;
                     "return")
-                        ydotool key "Alt_L+Left" #WWW-Back
+                        xdotool key "Alt_L+Left" #WWW-Back
                         ;;
                     "exit")
                         echo Key Pressed: EXIT
@@ -123,34 +126,28 @@ do
                         ;;
                     "F4")
                         echo Key Pressed: YELLOW C
-                        sync;sync;shutdown -h now
                         ;;
                     "F1")
                         echo Key Pressed: F1
                         ;;
                     "rewind")
-                        echo Key Pressed: REWIND
-			            ydotool key "Left"
+			            xdotool key "Left" # Go Backwards in Youtube
                         ;;
                     "pause")
-                        echo Key Pressed: PAUSE
-        		        ydotool key "k"
+		                xdotool key "k" # Play Pause (k shortcut)
                         ;;
                     "Fast forward")
-                        echo Key Pressed: FAST FORWARD
-		            	ydotool key "right"
+			            xdotool key "right" # Go Foward in Youtube
                         ;;
-		    "forward")
+		            "forward")
                         echo Key Pressed: forward
-                        
                         ;;
-		    "backward")
+		            "backward")
                         echo Key Pressed: backward
-		                ydotool key "f"
+		                xdotool key "f" # FullScreen (f shortcut)
                         ;;
                     "play")
-                        echo Key Pressed: PLAY
-        		        ydotool key "k"
+		                xdotool key "k" # Play Pause (k shortcut)
                         ;;
                     "stop")
                         ## with my remote I only got "STOP" as key released (auto-released), not as key pressed; see below
@@ -173,11 +170,19 @@ do
                 "stop")
                     echo Key Released: STOP
                     ;;
-		 "up"|"down"|"left"|"right")
+                "up")
+                    intmousespeed=$intmousestartspeed #reset mouse speed
+                    ;;
+                "down")
+                    intmousespeed=$intmousestartspeed #reset mouse speed
+                    ;;
+                "left")
+                    intmousespeed=$intmousestartspeed #reset mouse speed
+                    ;;
+                "right")
                     intmousespeed=$intmousestartspeed #reset mouse speed
                     ;;
             esac
         fi
     fi
 done
-
