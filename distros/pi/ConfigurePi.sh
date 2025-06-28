@@ -13,7 +13,7 @@
 #
 #
 #
-version="v1.4";
+version="v1.5";
 SPACER="================================================================================"
 #
 #
@@ -48,7 +48,7 @@ sudo apt upgrade -y || { echo "Failed to upgrade packages"; exit 1; }
 echo " "
 echo "Installing Packages"
 
-sudo apt install git tmux liferea ranger cec-utils ydotool wayfire lightdm || { echo "Failed to install packages"; exit 1; 
+sudo apt install git tmux liferea ranger cec-utils ydotool wayfire lightdm || { echo "Failed to install packages"; exit 1; }
 
 echo " "
 echo "Copying bash config..."
@@ -102,6 +102,36 @@ else
     echo "Error: cecremotestart.sh not found at ~/repos/RelluBash-Script-Collection/distros/pi/cec_remote/"
     exit 1
 fi
+
+cd ~/repos
+echo "Cloning xpadneo repository..."
+if [ -d "xpadneo" ]; then
+    echo "Warning: xpadneo directory already exists, skipping clone."
+else
+    git clone https://github.com/atar-axis/xpadneo.git
+fi
+
+echo "Changing to xpadneo directory..."
+if [ -d "xpadneo" ]; then
+    cd xpadneo
+else
+    echo "Error: xpadneo directory not found, cannot proceed with installation."
+    exit 1
+fi
+
+echo "Running xpadneo install script..."
+if [ -f "install.sh" ]; then
+    sudo ./install.sh
+else
+    echo "Error: install.sh not found in xpadneo directory."
+    exit 1
+fi
+
+echo "Disabling Bluetooth ERTM..."
+sudo bash -c 'echo 1 > /sys/module/bluetooth/parameters/disable_ertm'
+
+echo "Configuring Bluetooth to permanently disable ERTM..."
+echo "options bluetooth disable_ertm=1" | sudo tee /etc/modprobe.d/bluetooth.conf
 
 
 echo " "
