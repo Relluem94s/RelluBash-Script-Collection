@@ -1,5 +1,3 @@
-# .bashrc
-
 if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
 fi
@@ -27,9 +25,7 @@ if [[ ":$PATH:" != *":$GOPATH/bin:"* ]]; then
     PATH="$GOPATH/bin:$PATH"
 fi
 
-
 export PATH
-
 
 export LIBVA_DRIVER_NAME=iHD
 
@@ -46,11 +42,11 @@ parse_git_status() {
     local untracked=$(echo "$status" | grep -c '^??')
     local deleted=$(echo "$status" | grep -c '^.[D]')
 
-    local reset="\033[0m"
-    local green="\033[38;5;84m"
-    local red="\033[38;5;203m"
-    local yellow="\033[38;5;221m"
-    local pink="\033[38;5;212m"
+    local reset="\x01\e[0m\x02"
+    local green="\x01\e[38;5;84m\x02"
+    local red="\x01\e[38;5;203m\x02"
+    local yellow="\x01\e[38;5;221m\x02"
+    local pink="\x01\e[38;5;212m\x02"
 
     local color="$green"
     [ "$modified" -gt 0 ] && color="$red"
@@ -66,10 +62,7 @@ parse_git_status() {
     echo -e "$out"
 } 
 
-
-export PS1="\[$(tput bold)\]\[\033[38;5;220m\]\u\[$(tput sgr0)\] \[\033[38;5;242m\]>> \[\033[38;5;39m\]\w\[$(tput sgr0)\] \[\033[0m\]\$(parse_git_status) \[\033[38;5;242m\]\\$\[$(tput sgr0)\] "
-
-
+export PS1='\[\e[1m\]\[\e[38;5;220m\]\u\[\e[0m\] \[\e[38;5;242m\]>> \[\e[38;5;39m\]\w\[\e[0m\] $(parse_git_status) \[\e[38;5;242m\]\$\[\e[0m\] '
 
 # User specific aliases and functions
 alias reload="source ~/.bashrc" 
