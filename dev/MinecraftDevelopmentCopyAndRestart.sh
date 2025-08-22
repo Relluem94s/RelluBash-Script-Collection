@@ -25,10 +25,14 @@ rcon_password="password";
 #
 #
 #
-version="v1.0";
+version="v1.1";
 
 ARTIFACT_ID=$1
 
+if [ -z "$ARTIFACT_ID" ]; then
+    echo "No artifact ID provided. Usage: $0 <ARTIFACT_ID>"
+    exit 1
+fi
 
 
 # Überprüfen, ob die Datei existiert und dann löschen
