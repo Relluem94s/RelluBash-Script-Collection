@@ -14,7 +14,7 @@
 #                                      VARIABLES TO EDIT                                  #
 ###########################################################################################
 pathToRepos="/home/rellu/repos/";
-pathToMinecraft="/home/rellu/.var/app/com.mojang.Minecraft/.minecraft/resourcepacks/";
+pathToMinecraft="/home/rellu/.minecraft/resourcepacks";
 
 ###########################################################################################
 #                                     DO NOT TOUCH THE CODE                               #
