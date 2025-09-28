@@ -30,10 +30,13 @@ SSH_PORT=$SERVER_PORT_RELLUEM94_DE
 RESPACK_FOLDER=$SERVER_MINECRAFT_RESPACK_FOLDER_RELLUEM94_DE
 
 
-cd $pathToRepos
-cd RelluSGA-Resource-Pack
-./build.sh
+echo "Ressource Pack Deployment Tool $version"
+echo ""
 
+cd $pathToRepos || exit
+cd RelluSGA-Resource-Pack || exit
+
+./build.sh
 
 if [ $? -ne 0 ]; then
     echo "Error building Respack"
@@ -75,3 +78,4 @@ if [ $? -ne 0 ]; then
 else
     echo "ZIP file and index.php successfully copied to the server."
 fi
+
