@@ -19,7 +19,7 @@
 pathToRepos="/home/rellu/repos/";
 pathToDevServer="/home/rellu/repos/test-server";
 plugin="RelluEssentials";
-spigot_jar="spigot-1.20.1.jar";
+spigot_jar="spigot-1.21.9.jar";
 docker_mysql="mysql";
 docker_phpmyadmin="phpmyadmin";
 ###########################################################################################
